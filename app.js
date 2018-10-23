@@ -12,6 +12,7 @@ const gameState = {
       won: false,
       winner: null,
       player:'p1',
+      rollCounter: 0;
           //may need a  value to queue consecutive actions allowed.
           // also to initialize the first action to be player 2 on only the last element on the first array
       startBoard(){
@@ -24,6 +25,7 @@ const gameState = {
         this.winner = null;
         this.won = false;
         this.player = 'p2';
+        this.rollCounter = 0;
         }
 
 }
@@ -50,6 +52,10 @@ const playerSwap =() =>{
 
 //functions for stick rolling
 const stickRoll = () => {
+  gameState.rollCounter -=1;
+  if(gameState.rollCounter<0){
+    gameState.rollCounter = 0;
+  }
   for(let i = 0; i <= 3; i +=1){
     gameState.sticks[i] = Math.floor(Math.random() * Math.floor(2));
   }
@@ -68,24 +74,33 @@ const stickEval = () =>{
 
               if(whiteCounter=== 1){
                 //move 1 space and re throw
+                gameState.rollCounter = 1
+
                 console.log("1 White!")
+                return 1;
               }
               else if (whiteCounter === 2 ) {
                 //move 2 spaces
                 console.log("2 White!")
+                  return 2;
               }
 
               else if (whiteCounter === 3 ) {
                 // move 3 spaces
                 console.log("3 White!")
+                return 3;
               }
               else if(whiteCounter === 4 ){
                 //move 4 & re roll
                 console.log("All White!")
+                gameState.rollCounter = 1;
+                return 4;
               }
               else if(whiteCounter === 0){
                 //move 6 and re roll
                 console.log("All Black!")
+                gameState.rollCounter = 1;
+                return 6;
               }
 
 
@@ -103,6 +118,7 @@ console.log(gameState.sticks);
 */
 // controls movement of pieces on the board ?pass in array index? pass in sticks value
 const pieceMove = () =>{
+// make move counter equal to sticks
 
 // IF selcted array is the first move across
 
@@ -131,7 +147,7 @@ const canSwap = () =>{
 // can a piece pass a given row of 3 or more pieces,
 const canPass{
   // if three or more pieces on the same array line are present they cant be passed
-  // if tit jumped to the next line it is allowed
+  // if it jumped to the next line it is allowed
 }
 
 // what to do on a land with a special property
