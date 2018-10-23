@@ -13,7 +13,7 @@ const gameState = {
       winner: null,
       player:'p1',
           //may need a  value to queue consecutive actions allowed.
-          // also to initialize the first action to be player 2 on only the last element on the first array 
+          // also to initialize the first action to be player 2 on only the last element on the first array
       startBoard(){
         this.board = [
           ['p1','p2','p1','p2','p1','p2','p1','p2','p1','p2'],
@@ -104,18 +104,41 @@ console.log(gameState.sticks);
 // controls movement of pieces on the board ?pass in array index? pass in sticks value
 const pieceMove = () =>{
 
+// IF selcted array is the first move across
 
+// if the selcted array is the first array && last element move to last element of the second array
 
+// if the selected array is the second move backwards though the elements.
+
+// if the selected array is the second && first element move to the first element of the third array
+
+// if the seleced array is the third move across until element 5 to 9 where special rules apply
 }
 
 
 //  can a piece swap places with another piece
 const canSwap = () =>{
 
+//given a given piece and a target piece
 
+//check if the target piece is the same as the given piece OR check if the target piece has another of the same ahead once
+
+// also check if the spot is a special location
+
+//board [1][5], board[2][5], board[2][7], board[2][8] cant be attacked.
+
+}
+// can a piece pass a given row of 3 or more pieces,
+const canPass{
+  // if three or more pieces on the same array line are present they cant be passed
+  // if tit jumped to the next line it is allowed
 }
 
 // what to do on a land with a special property
 const specialLand = () =>{
+    // given a target location enact special rules
+
+    //given
+
 
 }
