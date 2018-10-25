@@ -240,3 +240,47 @@ else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== fal
   }
 
 }
+
+
+
+
+// goal of defCheck is to look "around" a targeted array index for neighbors, if neighbors are found return true, else return false
+function defCheck (targFirst,targSecond){
+    //check if the target second element is not equal to array .length minus 1 OR 0
+  if (targSecond!=0 && targSecond!= gameState.board[0].length-1){
+      // then just check ahead and behind
+        if (gameState.board[targFirst][targSecond] === gameState.board[targFirst][targSecond+1]||gameState.board[targFirst][targSecond]===gameState.board[targFirst][targSecond-1]){
+          console.log("found the match!")
+          return true;
+        }
+        else{
+          console.log("no match");
+          return false;
+        }
+  }// end IN middle Array check
+
+  else if(targSecond === 0){
+    if(gameState.board[targFirst][targSecond]=== gameState.board[targFirst][targSecond+1]|| gameState.board[targFirst][targSecond] ===  gameState.board[targFirst-1][gameState.board[0].length-1]){
+      console.log("found the match!");
+      return true;
+    }
+    else{
+      console.log("no match");
+      return false;
+    }
+  }//array check for the begining of array
+
+
+else if (targSecond === gameState.board[0].length-1){
+            if(gameState.board[targFirst][targSecond]=== gameState.board[targFirst][targSecond-1]||  gameState.board[targFirst][targSecond]  ===  gameState.board[targFirst+1][0]){
+              console.log("found the match!");
+              return true;
+            }
+            else{
+              console.log("no match");
+              return false;
+            }
+}// check for the end of arrays
+
+
+}
