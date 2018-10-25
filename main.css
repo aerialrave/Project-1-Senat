@@ -1,0 +1,70 @@
+body{
+  display: flex;
+  flex-flow: column;
+}
+
+#board{
+  display: flex;
+  width: 98vw;
+  height: 30vh;
+  background-color: gray;
+  flex-flow: column;
+    margin: -5px auto;
+    margin-left: -6px;
+    margin-bottom: 40px;
+}
+
+
+#first{
+  display: flex;
+  background-color: green;
+  height: 31%;
+  flex: 31%;
+}
+
+
+#second{
+  display: flex;
+  background-color: red;
+  height: 31%;
+  flex: 31%;
+}
+
+#third{
+  display: flex;
+  background-color: blue;
+  height: 31%;
+  flex: 31%;
+}
+
+
+.firstrow{
+flex: 10%;
+border: solid black 4px;
+}
+
+
+.secondrow{
+flex: 10%;
+border: solid black 4px;
+
+}
+
+
+
+.thirdrow{
+  flex: 10%;
+  border: solid black 4px;
+
+
+}
+
+
+#buttstock{
+
+}
+
+
+#rules{
+
+}
