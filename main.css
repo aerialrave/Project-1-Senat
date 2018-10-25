@@ -59,6 +59,31 @@ border: solid black 4px;
 
 }
 
+#containerWrapper{
+display: inline-flex;
+margin-top: 20px;
+
+
+}
+
+#stickContainer{
+  margin-left: 234px;
+    display: flex;
+    transform: rotate(45deg);
+    background-color: orange;
+    height: 50vh;
+    width: 30vh;
+}
+
+.stick{
+   background-color: black;
+   border: solid orange 3px;
+   border-radius: 50px;
+   flex: 25%;
+}
+
+
+
 
 #buttstock{
 
