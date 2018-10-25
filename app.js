@@ -164,5 +164,46 @@ const specialLand = () =>{
 }
 
 const writeBlank = ()=> {
-  
+
 }
+
+// goal of traverseBoard is to be fed in 2 numbers that hold the 2 indexes and a set number of moves, after reaching the location, swap the values from origin to target location.
+function traverseBoard(firstIndex, secondIndex, steps){
+let stepsCopy = steps;
+let plusOne = firstIndex+1;
+
+let path = secondIndex + steps;
+// now to use undefined to jump arrays
+for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
+
+
+        if (gameState.board[firstIndex][r]!= undefined){// if the value inside is not undefined
+        console.log(gameState.board[firstIndex][r]);// spit out what is inside
+              stepsCopy -=1;//decriment the copy of move is by 1
+              // if moves copy is equal to one here  swap from origin to  new location
+                if (r===steps && gameState.board[firstIndex][r++]!= undefined){// if next spot is NOT undefined and steps is fully looped, log out the current indexes first and second
+                  console.log("firstIndex :"+firstIndex +" r:"+ r);
+                }
+
+            }
+
+else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined value
+            console.log("undefined hit!");//hit confirm
+            for(let e = 0;e <=stepsCopy-1; e++){// loop from the start of the next array in line
+                console.log("next array is "+ gameState.board[plusOne][e]);//spit out the values contained in the next array
+                console.log("the copy of moves is " + stepsCopy);//spit out the value of the copy
+                if( e === stepsCopy-1){ // when the loop ends
+                    console.log("current value is "+ plusOne + " " +e);
+                    console.log("escape!");//console log just before the return statement to not loop again.
+                    // swap from origin to array [index+1][e]
+                  return 0;
+                }
+            }
+          }
+
+            }
+}
+
+//now ot test
+
+traverseBoard(1,1,1);
