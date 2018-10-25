@@ -306,3 +306,25 @@ else if (targSecond === gameState.board[0].length-1){
 
 
 }
+
+
+
+function updateBoard(){
+  let viewBoard =  document.querySelector("#board");
+  let firstRow = document.querySelectorAll(".firstrow");
+  let secondRow = document.querySelectorAll(".secondrow");
+  let thirdRow = document.querySelectorAll(".thirdrow");
+
+for (var i = 0; i < gameState.board.length; i++) {
+  let row = gameState.board[i];
+  for (var i = 0; i < row.length; i++) {
+  if (row[i] === 'p1') {
+    let p1Piece = document.createElement('div');
+    p1Piece.className = 'player1Piece'
+    let position = firstRow[i];
+    position.appendChild(p1Piece);
+
+  }
+  }
+  }
+}// end of updateBoard
