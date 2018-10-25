@@ -64,6 +64,28 @@ const stickRoll = () => {
   }
 
 }
+
+
+function updateStickroll(){
+  let button= document.querySelector("#highRoller");
+  button.addEventListener('click', stickRoll);
+  let sticksEL = document.querySelectorAll(".stick");
+let sticks = gameState.sticks;
+  for(let i=0; i<=3; i+=1){
+    let stickEL = sticksEL[i];
+      let stick = sticks[i];
+    if (stick === 0) {
+      stickEL.style.backgroundColor= "black";
+    }
+
+      else {
+      stickEL.style.backgroundColor= "white";
+          }
+      }
+}
+
+
+
 //  function for evaluating stick rolls
 
 const stickEval = () =>{
