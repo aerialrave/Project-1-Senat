@@ -12,7 +12,7 @@ const gameState = {
       won: false,
       winner: null,
       player:'p1',
-      rollCounter: 0;
+      rollCounter:0 ,
           //may need a  value to queue consecutive actions allowed.
           // also to initialize the first action to be player 2 on only the last element on the first array
       startBoard(){
@@ -31,9 +31,12 @@ const gameState = {
 }
 
 //goal set up board, players pieces,  gameState of no win or loss
-/*gameState.startBoard();
+gameState.startBoard();
  console.log(gameState.board);
- console.log(gameState.sticks);*/
+console.log(gameState.board[0]);//returns row
+console.log(gameState.board[0][0]);//returns element
+
+ //console.log(gameState.sticks)
 //functions for gamme piece interactions
 
 
@@ -118,6 +121,7 @@ console.log(gameState.sticks);
 */
 // controls movement of pieces on the board ?pass in array index? pass in sticks value
 const pieceMove = () =>{
+
 // make move counter equal to sticks
 
 // IF selcted array is the first move across
@@ -145,7 +149,7 @@ const canSwap = () =>{
 
 }
 // can a piece pass a given row of 3 or more pieces,
-const canPass{
+const canPass = () =>{
   // if three or more pieces on the same array line are present they cant be passed
   // if it jumped to the next line it is allowed
 }
@@ -157,4 +161,8 @@ const specialLand = () =>{
     //given
 
 
+}
+
+const writeBlank = ()=> {
+  
 }
