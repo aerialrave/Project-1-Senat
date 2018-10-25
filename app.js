@@ -207,3 +207,14 @@ else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined 
 //now ot test
 
 traverseBoard(1,1,1);
+
+
+function swapPiece(firstIndex,secondIndex,targFirst,targSecond){
+          //setting temp  holder
+        let tempo = gameState.board[targFirst][targSecond];
+          //  value from first to target
+    gameState.board[targFirst][targSecond] =    gameState.board[firstIndex][secondIndex];
+          // value from temo to first
+        gameState.board[firstIndex][secondIndex]= tempo;
+
+}
