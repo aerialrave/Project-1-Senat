@@ -218,3 +218,25 @@ function swapPiece(firstIndex,secondIndex,targFirst,targSecond){
         gameState.board[firstIndex][secondIndex]= tempo;
 
 }
+
+
+
+//goal of WinCheck is to go through all 3 arrays for strings of p1 or p2
+
+function winCheck(garray){
+  console.log('win check');
+let p1Win = false;
+let p2Win = false;
+debugger;
+    if (garray[0].includes('p1') === false  && garray[1].includes('p1') === false && garray[2].includes('p1') === false ){
+  p1Win = true;
+  console.log (p1Win);
+  console.log("P1 Wins");
+      }
+else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== false && garray[2].includes('p2') === false){
+  p2Win = true;
+  console.log (p2Win);
+  console.log("P2 Wins");
+  }
+
+}
