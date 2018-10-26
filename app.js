@@ -18,8 +18,8 @@ const gameState = {
       startBoard(){
         this.board = [
           ['p1','p2','p1','p2','p1','p2','p1','p2','p1','p2'],
-          ['p1','p2','p1','p2','p1','p2','p1','p2','p1','p2'],
-          ['p1','p2','p1','p2','p1','p2','p1','p2','p1','p2']
+          ['0','1','2','3','4','5','6','7','8','9'],
+          ['0','1','2','3','4','5','6','7','8','9']
         ];
         this.sticks = [0,0,0,0];
         this.winner = null;
@@ -325,7 +325,14 @@ for (var i = 0; i < gameState.board.length; i+=1) {
     let position = arr[i][j];
     position.appendChild(p1Piece);
 
-  }
-  }
-  }
+          }
+    else if (row[j] === 'p2') {
+      let p2Piece = document.createElement('div');
+      p2Piece.className = 'player2Piece';
+      let position = arr[i][j];
+      position.appendChild(p2Piece);
+    }
+
+        }
+    }
 }// end of updateBoard
