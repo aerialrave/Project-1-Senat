@@ -1,3 +1,5 @@
+const diceControl = document.getElementById("highRoller");
+const forceTurnend = document.getElementById("forceEnd")
 const gameState = {
     board:[
     ['0','1','2','3','4','5','6','7','8','9'],
@@ -36,9 +38,18 @@ gameState.startBoard();
 console.log(gameState.board[0]);//returns row
 console.log(gameState.board[0][0]);//returns element
 
-document.getElementById("highRoller").addEventListener("click", function(){
+updateBoard();
+//event listeners for stick button and force end of turn button
+diceControl.addEventListener("click", function(){
         stickRoll();
         updateStickroll();
+
+});
+
+
+
+forceTurnend.addEventListener("click", function() {
+          playerSwap();
 
 });
  //console.log(gameState.sticks)
@@ -51,9 +62,13 @@ document.getElementById("highRoller").addEventListener("click", function(){
 const playerSwap =() =>{
   if (gameState.player === 'p1'){
         gameState.player ='p2';
+          gameState.sticks = [0,0,0,0];
+          updateStickroll();
         }
         else{
           gameState.player ='p1';
+          gameState.sticks = [0,0,0,0];
+          updateStickroll();
         }
 
 }
@@ -190,9 +205,7 @@ const specialLand = () =>{
 
 }
 
-const writeBlank = ()=> {
 
-}
 
 // goal of traverseBoard is to be fed in 2 numbers that hold the 2 indexes and a set number of moves, after reaching the location, swap the values from origin to target location.
 function traverseBoard(firstIndex, secondIndex, steps){
@@ -238,7 +251,7 @@ else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined 
 
 //now ot test
 
-traverseBoard(1,1,1);
+
 
 
 function swapPiece(firstIndex,secondIndex,targFirst,targSecond){
@@ -273,11 +286,9 @@ else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== fal
 
 }
 
-
+// replaces piece on board with a string for 0
 function removePiece(firstIndex,secondIndex){
   gameState.Board[firstIndex][secondIndex] ='0';
-
-
 }
 
 // goal of defCheck is to look "around" a targeted array index for neighbors, if neighbors are found return true, else return false

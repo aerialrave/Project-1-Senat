@@ -28,6 +28,7 @@ body{
   background-color: red;
   height: 31%;
   flex: 31%;
+  flex-direction: row-reverse;
 }
 
 #third{
@@ -97,13 +98,17 @@ margin-top: 20px;
 
 
 .player1Piece{
-    flex:45%;
+    flex:1;
+    height: 65%;
+    width: 65%;
     background-color: yellow;
     border-radius: 50%;
 }
 
 .player2Piece{
-  flex:45%;
+  flex:1;
+  height: 65%;
+  width: 65%;
   background-color: violet;
   border-radius: 50%;
 }
