@@ -204,6 +204,9 @@ for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
               stepsCopy -=1;//decriment the copy of move is by 1
               // if moves copy is equal to one here  swap from origin to  new location
                 if (r===steps && gameState.board[firstIndex][r++]!= undefined){// if next spot is NOT undefined and steps is fully looped, log out the current indexes first and second
+
+                    swapPiece(firstIndex,secondIndex,firstIndex,r);
+
                   console.log("firstIndex :"+firstIndex +" r:"+ r);
                 }
 
@@ -215,6 +218,8 @@ else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined 
                 console.log("next array is "+ gameState.board[plusOne][e]);//spit out the values contained in the next array
                 console.log("the copy of moves is " + stepsCopy);//spit out the value of the copy
                 if( e === stepsCopy-1){ // when the loop ends
+
+                    swapPiece(firstIndex,secondIndex,plusOne,e)
                     console.log("current value is "+ plusOne + " " +e);
                     console.log("escape!");//console log just before the return statement to not loop again.
                     // swap from origin to array [index+1][e]
@@ -235,7 +240,7 @@ function swapPiece(firstIndex,secondIndex,targFirst,targSecond){
           //setting temp  holder
         let tempo = gameState.board[targFirst][targSecond];
           //  value from first to target
-    gameState.board[targFirst][targSecond] =    gameState.board[firstIndex][secondIndex];
+    gameState.board[targFirst][targSecond] = gameState.board[firstIndex][secondIndex];
           // value from temo to first
         gameState.board[firstIndex][secondIndex]= tempo;
 
