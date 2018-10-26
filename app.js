@@ -269,7 +269,11 @@ else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== fal
 }
 
 
+function removePiece(firstIndex,secondIndex){
+  gameState.Board[firstIndex][secondIndex] ='0';
 
+
+}
 
 // goal of defCheck is to look "around" a targeted array index for neighbors, if neighbors are found return true, else return false
 function defCheck (targFirst,targSecond){
