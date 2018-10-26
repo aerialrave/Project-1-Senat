@@ -18,8 +18,8 @@ const gameState = {
       startBoard(){
         this.board = [
           ['p1','p2','p1','p2','p1','p2','p1','p2','p1','p2'],
-          ['0','1','2','3','4','5','6','7','8','9'],
-          ['0','1','2','3','4','5','6','7','8','9']
+          ['p1','p2','p1','p2','p1','p2','p1','p2','p1','p2'],
+          ['p1','p2','p1','p2','p1','p2','p1','p2','p1','p2']
         ];
         this.sticks = [0,0,0,0];
         this.winner = null;
@@ -314,14 +314,15 @@ function updateBoard(){
   let firstRow = document.querySelectorAll(".firstrow");
   let secondRow = document.querySelectorAll(".secondrow");
   let thirdRow = document.querySelectorAll(".thirdrow");
+  let arr = [firstRow, secondRow, thirdRow];
 
-for (var i = 0; i < gameState.board.length; i++) {
+for (var i = 0; i < gameState.board.length; i+=1) {
   let row = gameState.board[i];
-  for (var i = 0; i < row.length; i++) {
-  if (row[i] === 'p1') {
+  for (var j = 0; j < row.length; j+=1) {
+  if (row[j] === 'p1') {
     let p1Piece = document.createElement('div');
-    p1Piece.className = 'player1Piece'
-    let position = firstRow[i];
+    p1Piece.className = 'player1Piece';
+    let position = arr[i][j];
     position.appendChild(p1Piece);
 
   }
