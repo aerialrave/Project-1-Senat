@@ -1,4 +1,5 @@
 let viewBoard =  document.querySelector("#board");
+
 let firstRow = document.querySelectorAll(".firstrow");
 let secondRow = document.querySelectorAll(".secondrow");
 let thirdRow = document.querySelectorAll(".thirdrow");
@@ -15,6 +16,8 @@ const gameState = {
       ],
       // 0 is black 1 is color // used for determining moves
       sticks:[0,0,0,0],
+      moves: 0,
+      rollCounter:0,
       //win count
       p1Vics:0,
       p2Vics:0,
@@ -27,7 +30,7 @@ const gameState = {
       targRow: null,
       targCol: null,
 
-      rollCounter:0 ,
+
           //may need a  value to queue consecutive actions allowed.
           // also to initialize the first action to be player 2 on only the last element on the first array
       startBoard(){
@@ -71,7 +74,11 @@ forceTurnend.addEventListener("click", function() {
 //functions for gamme piece interactions
 
 //Parse the target id for a value to
-viewBoard.addEventListener("click", function(e){console.log(e.target.id && e.target.className)});
+
+
+viewBoard.addEventListener("click", function(e){
+    console.log("row:"+ e.target.dataset.row +" col:"+ e.target.dataset.col);
+  });
 
 //functions for special board interactions
 
@@ -82,13 +89,14 @@ const playerSwap =() =>{
           gameState.sticks = [0,0,0,0];
           updateStickroll();
           resetTargeting();
-
+          moveAndRollreset();
         }
         else{
           gameState.player ='p1';
           gameState.sticks = [0,0,0,0];
           updateStickroll();
           resetTargeting();
+          moveAndRollreset();
         }
 
 }
@@ -139,32 +147,36 @@ const stickEval = () =>{
 
               if(whiteCounter=== 1){
                 //move 1 space and re throw
-                gameState.rollCounter = 1
-
+                gameState.board.rollCounter = 1
+                gameState.board.moves = 1;
                 console.log("1 White!")
                 return 1;
               }
               else if (whiteCounter === 2 ) {
                 //move 2 spaces
+                gameState.board.moves = 2;
                 console.log("2 White!")
                   return 2;
               }
 
               else if (whiteCounter === 3 ) {
                 // move 3 spaces
+                gameState.board.moves = 3;
                 console.log("3 White!")
                 return 3;
               }
               else if(whiteCounter === 4 ){
                 //move 4 & re roll
+                gameState.board.moves = 4;
                 console.log("All White!")
-                gameState.rollCounter = 1;
+                gameState.board.rollCounter = 1;
                 return 4;
               }
               else if(whiteCounter === 0){
                 //move 6 and re roll
+                gameState.board.moves = 6;
                 console.log("All Black!")
-                gameState.rollCounter = 1;
+                gameState.board.rollCounter = 1;
                 return 6;
               }
 
@@ -390,7 +402,11 @@ function noAttack(firstIndex,secondIndex,targFirst,targSecond){
   }
 }
 
-
+//reset moves and rolls
+function moveAndRollreset(){
+  gameState.board.rollCounter = 0;
+  gameState.board.moves = 0;
+}
 //reset resetTargeting
 
 function resetTargeting(){
@@ -399,13 +415,13 @@ function resetTargeting(){
   gameState.targRow = null;
   gameState.targCol = null;
 }
-
+// needed
 function writeSource(srow,scol){
   gameState.board.sourceRow = srow;
   gameState.board.sourceCol = scol;
 }
 
-
+// may not be needed
 function writeTarget(trow, tcol){
   gameState.board.targRow = trow;
   gameState.board.targCol = tcol;
