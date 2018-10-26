@@ -36,6 +36,11 @@ gameState.startBoard();
 console.log(gameState.board[0]);//returns row
 console.log(gameState.board[0][0]);//returns element
 
+document.getElementById("highRoller").addEventListener("click", function(){
+        stickRoll();
+        updateStickroll();
+
+});
  //console.log(gameState.sticks)
 //functions for gamme piece interactions
 
@@ -219,7 +224,7 @@ else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined 
                 console.log("the copy of moves is " + stepsCopy);//spit out the value of the copy
                 if( e === stepsCopy-1){ // when the loop ends
 
-                    swapPiece(firstIndex,secondIndex,plusOne,e)
+                    swapPiece(firstIndex,secondIndex,plusOne,e);
                     console.log("current value is "+ plusOne + " " +e);
                     console.log("escape!");//console log just before the return statement to not loop again.
                     // swap from origin to array [index+1][e]
