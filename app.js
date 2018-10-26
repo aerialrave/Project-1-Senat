@@ -1,12 +1,19 @@
+let viewBoard =  document.querySelector("#board");
+let firstRow = document.querySelectorAll(".firstrow");
+let secondRow = document.querySelectorAll(".secondrow");
+let thirdRow = document.querySelectorAll(".thirdrow");
+
 const diceControl = document.getElementById("highRoller");
 const forceTurnend = document.getElementById("forceEnd")
+
+
 const gameState = {
     board:[
     ['0','1','2','3','4','5','6','7','8','9'],
     ['0','1','2','3','4','5','6','7','8','9'],
     ['0','1','2','3','4','5','6','7','8','9']
       ],
-      // 0 is black 1 is color
+      // 0 is black 1 is color // used for determining moves
       sticks:[0,0,0,0],
       //win count
       p1Vics:0,
@@ -14,6 +21,12 @@ const gameState = {
       won: false,
       winner: null,
       player:'p1',
+      // deal with source and target locations
+      sourceRow: null,
+      sourceCol: null,
+      targRow: null,
+      targCol: null,
+
       rollCounter:0 ,
           //may need a  value to queue consecutive actions allowed.
           // also to initialize the first action to be player 2 on only the last element on the first array
@@ -27,6 +40,8 @@ const gameState = {
         this.winner = null;
         this.won = false;
         this.player = 'p2';
+        this.sourceCol = 9;
+        this.sourceRow = 0;
         this.rollCounter = 0;
         }
 
@@ -55,6 +70,8 @@ forceTurnend.addEventListener("click", function() {
  //console.log(gameState.sticks)
 //functions for gamme piece interactions
 
+//Parse the target id for a value to
+viewBoard.addEventListener("click", function(e){console.log(e.target.id && e.target.className)});
 
 //functions for special board interactions
 
@@ -64,11 +81,14 @@ const playerSwap =() =>{
         gameState.player ='p2';
           gameState.sticks = [0,0,0,0];
           updateStickroll();
+          resetTargeting();
+
         }
         else{
           gameState.player ='p1';
           gameState.sticks = [0,0,0,0];
           updateStickroll();
+          resetTargeting();
         }
 
 }
@@ -335,10 +355,7 @@ else if (targSecond === gameState.board[0].length-1){
 
 
 function updateBoard(){
-  let viewBoard =  document.querySelector("#board");
-  let firstRow = document.querySelectorAll(".firstrow");
-  let secondRow = document.querySelectorAll(".secondrow");
-  let thirdRow = document.querySelectorAll(".thirdrow");
+
   let arr = [firstRow, secondRow, thirdRow];
 
 for (var i = 0; i < gameState.board.length; i+=1) {
@@ -371,4 +388,25 @@ function noAttack(firstIndex,secondIndex,targFirst,targSecond){
   else {
     return false;
   }
+}
+
+
+//reset resetTargeting
+
+function resetTargeting(){
+  gameState.sourceRow = null;
+  gameState.sourceCol = null;
+  gameState.targRow = null;
+  gameState.targCol = null;
+}
+
+function writeSource(srow,scol){
+  gameState.board.sourceRow = srow;
+  gameState.board.sourceCol = scol;
+}
+
+
+function writeTarget(trow, tcol){
+  gameState.board.targRow = trow;
+  gameState.board.targCol = tcol;
 }
