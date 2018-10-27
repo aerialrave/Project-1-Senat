@@ -25,10 +25,10 @@ const gameState = {
       winner: null,
       player:'p1',
       // deal with source and target locations
-      sourceRow: null,
-      sourceCol: null,
-      targRow: null,
-      targCol: null,
+      sourceRow:0,
+      sourceCol: 0,
+      targRow: 0,
+      targCol: 0,
       // Bool for listener controls
       rollBool: true,
       boardBool: false,
@@ -67,6 +67,7 @@ diceControl.addEventListener("click", function(){
 if(gameState.rollBool === true ){
         stickRoll();
         updateStickroll();
+        stickEval();
         gameState.rollBool = false;
         }
 });
@@ -89,15 +90,15 @@ viewBoard.addEventListener("click", function(e){
     if(gameState.boardBool === true){
 
 let testRow = e.target.dataset.row;
-let testCol = e.target.dataset.col
+let testCol = e.target.dataset.col;
 
-    if(gameState.player ='p1' && gameState.board[testRow][testCol] = 'p2'|| gameState.player ='p2' && gameState.board[testRow][testCol] = 'p1'){
+    if( gameState.player ==='p1' && gameState.board[testRow][testCol] === 'p2'|| gameState.player ==='p2' && gameState.board[testRow][testCol] === 'p1'){
       gameState.boardBool = true;
-        // use ME!! for messages about misplaces clicks on your on pieces
+        // use ME!! for messages about misplacesd clicks on pieces
       return 0;
           }
 
-        else if(gameState.player ='p1' && gameState.board[testRow][testCol] = 'p1'|| gameState.player ='p2' && gameState.board[testRow][testCol] = 'p2' ){
+        else if(gameState.player === 'p1' && gameState.board[testRow][testCol] === 'p1'|| gameState.player === 'p2' && gameState.board[testRow][testCol] === 'p2' ){
           gameState.sourceRow = testRow;
           gameState.sourceCol = testCol;
       gameState.boardBool = false;
@@ -105,7 +106,7 @@ let testCol = e.target.dataset.col
       console.log("gameState sourceRow " + gameState.sourceRow + " gameState sourceCol " + gameState.sourceCol);
       }
 
-      else (){
+      else {
         gameState.boardBool = true;
         return 0;
       }
@@ -173,7 +174,7 @@ let sticks = gameState.sticks;
 
 //  function for evaluating stick rolls
 
-const stickEval = () =>{
+function stickEval(){
 
         let whiteCounter = 0;
     for (let i =0 ; i <= gameState.sticks.length; i+=1){
@@ -221,13 +222,7 @@ const stickEval = () =>{
 
 }
 /*
-stickRoll();
-console.log("gameState of sticks is "+gameState.sticks);
-stickEval();
 
-/*
-stickRoll()
-console.log(gameState.sticks);
 
 */
 // controls movement of pieces on the board ?pass in array index? pass in sticks value
@@ -254,7 +249,7 @@ const specialLand = () =>{
 function traverseBoard(firstIndex, secondIndex, steps){
 let stepsCopy = steps;
 let plusOne = firstIndex+1;
-
+debugger;
 let path = secondIndex + steps;
 // now to use undefined to jump arrays
 for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
@@ -274,6 +269,7 @@ for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
             }
 
 else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined value
+            debugger;
             console.log("undefined hit!");//hit confirm
             for(let e = 0;e <=stepsCopy-1; e++){// loop from the start of the next array in line
                 console.log("next array is "+ gameState.board[plusOne][e]);//spit out the values contained in the next array
@@ -378,16 +374,19 @@ else if (targSecond === gameState.board[0].length-1){
 
 
 function updateBoard(){
-
+debugger;
   let arr = [firstRow, secondRow, thirdRow];
 
 for (var i = 0; i < gameState.board.length; i+=1) {
   let row = gameState.board[i];
   for (var j = 0; j < row.length; j+=1) {
-  if (row[j] === 'p1') {
+    if (row[j] === 'p1') {
+
     let p1Piece = document.createElement('div');
     p1Piece.className = 'player1Piece';
     let position = arr[i][j];
+
+      if (position.children[0].className != 'player1Piece')
     position.appendChild(p1Piece);
 
           }
@@ -395,7 +394,19 @@ for (var i = 0; i < gameState.board.length; i+=1) {
       let p2Piece = document.createElement('div');
       p2Piece.className = 'player2Piece';
       let position = arr[i][j];
-      position.appendChild(p2Piece);
+
+
+      if (position.children[0].className != 'player2Piece')
+          position.appendChild(p1Piece);
+
+    }
+      // neither pieces present
+    else if (row[j] !=== 'p2'|| row[j] !=== 'p1') {
+
+      let p2Piece = document.createElement('div');
+      p2Piece.className = 'player2Piece';
+      let position = arr[i][j];
+      position.firstChild.remove();
     }
 
         }
