@@ -72,10 +72,9 @@ if(gameState.rollBool === true ){
 });
 
 
-
+// ends the turn and adds turns roll boolean to true, allopwing the event listener to run
 forceTurnend.addEventListener("click", function() {
           playerSwap();
-          gameState.rollBool = true;
 
 });
  //console.log(gameState.sticks)
@@ -86,13 +85,27 @@ forceTurnend.addEventListener("click", function() {
 //
 viewBoard.addEventListener("click", function(e){
 // ok so I get how it works not to make a logic rule for turns then updateBoard
-    debugger;
+
     if(gameState.boardBool === true){
-    gameState.sourceRow = e.target.dataset.row;
-    gameState.sourceCol = e.target.dataset.col;
+
+let testRow = e.target.dataset.row;
+let testCol = e.target.dataset.col
+
+    if(gameState.player ='p1' && gameState.board[testRow][testCol] = 'p2'|| gameState.player ='p2' && gameState.board[testRow][testCol] = 'p1'){
+      gameState.boardBool = true;
+        // use ME!! for messages about misplaces clicks on your on pieces
+      return 0;
+          }
+
+
+
+        else{
+          gameState.sourceRow = testRow;
+          gameState.sourceCol = testCol;
       gameState.boardBool = false;
       // maybe highlight the border?
       console.log("gameState sourceRow " + gameState.sourceRow + " gameState sourceCol " + gameState.sourceCol);
+      }
   }
 
 
@@ -214,39 +227,13 @@ console.log(gameState.sticks);
 
 */
 // controls movement of pieces on the board ?pass in array index? pass in sticks value
-const pieceMove = () =>{
 
-// make move counter equal to sticks
-
-// IF selcted array is the first move across
-
-// if the selcted array is the first array && last element move to last element of the second array
-
-// if the selected array is the second move backwards though the elements.
-
-// if the selected array is the second && first element move to the first element of the third array
-
-// if the seleced array is the third move across until element 5 to 9 where special rules apply
-}
 
 
 //  can a piece swap places with another piece
-const canSwap = () =>{
 
-//given a given piece and a target piece
-
-//check if the target piece is the same as the given piece OR check if the target piece has another of the same ahead once
-
-// also check if the spot is a special location
-
-//board [1][5], board[2][5], board[2][7], board[2][8] cant be attacked.
-
-}
 // can a piece pass a given row of 3 or more pieces,
-const canPass = () =>{
-  // if three or more pieces on the same array line are present they cant be passed
-  // if it jumped to the next line it is allowed
-}
+
 
 // what to do on a land with a special property
 const specialLand = () =>{
