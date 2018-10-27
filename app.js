@@ -249,11 +249,9 @@ const specialLand = () =>{
 function traverseBoard(firstIndex, secondIndex, steps){
 let stepsCopy = steps;
 let plusOne = firstIndex+1;
-debugger;
 let path = secondIndex + steps;
 // now to use undefined to jump arrays
 for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
-
 
         if (gameState.board[firstIndex][r]!= undefined){// if the value inside is not undefined
         console.log(gameState.board[firstIndex][r]);// spit out what is inside
@@ -468,4 +466,49 @@ function writeSource(srow,scol){
 function writeTarget(trow, tcol){
   gameState.targRow = trow;
   gameState.targCol = tcol;
+}
+
+function watertrap(){
+  // check the board to see if the trap is activated
+    if (gameState.board[2][6]=== 'p1'||'p2'){
+      // if there are no player pieces on the slot, swapPiece back up
+      if (gameState.board[1][3] != 'p1'||'p2'){
+      swapPiece(2,6,1,3);
+    }
+      // if the spot is occupied then  go to the next open spot
+    else if (gameState.board[1][3] === 'p1'||'p2') {
+
+
+          for(let k = 12; k === 0; k--){
+
+
+             if (k>9){
+              let revwater = 2;
+              if (gameState.board[1][revwater] === 'p1'||'p2'){
+                revwater -=1;
+              }
+              else {
+                swapPiece(2,6,1,revwater);
+                return 0;
+              }
+
+            }// end of the first array check
+            //
+          else {
+
+           for(let a = 10; a<0; a++){
+             if (gameState.board[0][a]!= 'p1'|| 'p2'){
+               swapPiece(2,6,0,a);
+               return 0;
+             }
+
+            }
+           }
+          }
+
+
+    }
+
+  }
+
 }
