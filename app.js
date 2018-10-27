@@ -97,15 +97,19 @@ let testCol = e.target.dataset.col
       return 0;
           }
 
-
-
-        else{
+        else if(gameState.player ='p1' && gameState.board[testRow][testCol] = 'p1'|| gameState.player ='p2' && gameState.board[testRow][testCol] = 'p2' ){
           gameState.sourceRow = testRow;
           gameState.sourceCol = testCol;
       gameState.boardBool = false;
       // maybe highlight the border?
       console.log("gameState sourceRow " + gameState.sourceRow + " gameState sourceCol " + gameState.sourceCol);
       }
+
+      else (){
+        gameState.boardBool = true;
+        return 0;
+      }
+
   }
 
 
