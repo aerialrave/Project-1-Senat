@@ -29,8 +29,9 @@ const gameState = {
       sourceCol: null,
       targRow: null,
       targCol: null,
-
-
+      // Bool for listener controls
+      rollBool: true,
+      boardBool: false,
           //may need a  value to queue consecutive actions allowed.
           // also to initialize the first action to be player 2 on only the last element on the first array
       startBoard(){
@@ -46,6 +47,9 @@ const gameState = {
         this.sourceCol = 9;
         this.sourceRow = 0;
         this.rollCounter = 0;
+        this.moves = 0;
+        this.rollBool= true,
+        this.boardBool= false;
         }
 
 }
@@ -59,25 +63,39 @@ console.log(gameState.board[0][0]);//returns element
 updateBoard();
 //event listeners for stick button and force end of turn button
 diceControl.addEventListener("click", function(){
+
+if(gameState.rollBool === true ){
         stickRoll();
         updateStickroll();
-
+        gameState.rollBool = false;
+        }
 });
 
 
 
 forceTurnend.addEventListener("click", function() {
           playerSwap();
+          gameState.rollBool = true;
 
 });
  //console.log(gameState.sticks)
 //functions for gamme piece interactions
 
-//Parse the target id for a value to
+//Testing if a game state is altered, listen  for a value
 
-
+//
 viewBoard.addEventListener("click", function(e){
-    console.log("row:"+ e.target.dataset.row +" col:"+ e.target.dataset.col);
+// ok so I get how it works not to make a logic rule for turns then updateBoard
+    debugger;
+    if(gameState.boardBool === true){
+    gameState.sourceRow = e.target.dataset.row;
+    gameState.sourceCol = e.target.dataset.col;
+      gameState.boardBool = false;
+      // maybe highlight the border?
+      console.log("gameState sourceRow " + gameState.sourceRow + " gameState sourceCol " + gameState.sourceCol);
+  }
+
+
   });
 
 //functions for special board interactions
@@ -90,6 +108,7 @@ const playerSwap =() =>{
           updateStickroll();
           resetTargeting();
           moveAndRollreset();
+          gameState.rollBool = true;
         }
         else{
           gameState.player ='p1';
@@ -97,6 +116,7 @@ const playerSwap =() =>{
           updateStickroll();
           resetTargeting();
           moveAndRollreset();
+          gameState.rollBool = true;
         }
 
 }
@@ -147,36 +167,36 @@ const stickEval = () =>{
 
               if(whiteCounter=== 1){
                 //move 1 space and re throw
-                gameState.board.rollCounter = 1
-                gameState.board.moves = 1;
+                gameState.rollCounter = 1
+                gameState.moves = 1;
                 console.log("1 White!")
                 return 1;
               }
               else if (whiteCounter === 2 ) {
                 //move 2 spaces
-                gameState.board.moves = 2;
+                gameState.moves = 2;
                 console.log("2 White!")
                   return 2;
               }
 
               else if (whiteCounter === 3 ) {
                 // move 3 spaces
-                gameState.board.moves = 3;
+                gameState.moves = 3;
                 console.log("3 White!")
                 return 3;
               }
               else if(whiteCounter === 4 ){
                 //move 4 & re roll
-                gameState.board.moves = 4;
+                gameState.moves = 4;
                 console.log("All White!")
-                gameState.board.rollCounter = 1;
+                gameState.rollCounter = 1;
                 return 4;
               }
               else if(whiteCounter === 0){
                 //move 6 and re roll
-                gameState.board.moves = 6;
+                gameState.moves = 6;
                 console.log("All Black!")
-                gameState.board.rollCounter = 1;
+                gameState.rollCounter = 1;
                 return 6;
               }
 
@@ -417,12 +437,12 @@ function resetTargeting(){
 }
 // needed
 function writeSource(srow,scol){
-  gameState.board.sourceRow = srow;
-  gameState.board.sourceCol = scol;
+  gameState.sourceRow = srow;
+  gameState.sourceCol = scol;
 }
 
 // may not be needed
 function writeTarget(trow, tcol){
-  gameState.board.targRow = trow;
-  gameState.board.targCol = tcol;
+  gameState.targRow = trow;
+  gameState.targCol = tcol;
 }
