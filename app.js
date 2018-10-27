@@ -381,7 +381,6 @@ for (var i = 0; i < gameState.board.length; i+=1) {
   for (var j = 0; j < row.length; j+=1) {
     if (row[j] === 'p1') {
 
-
     let position = arr[i][j];
         // has the if there arent child nodes append a child
       if (position.hasChildNodes() === false){
@@ -393,7 +392,6 @@ for (var i = 0; i < gameState.board.length; i+=1) {
             // if there are child nodes if the same is there  dont add any, if different remove and rewrite
             else if (position.hasChildNodes() === true){
                       if(position.children[0].className === 'player1Piece'){
-
                       }
                       else if(position.children[0].className === 'player2Piece'){
                         let p1Piece = document.createElement('div');
@@ -415,7 +413,6 @@ for (var i = 0; i < gameState.board.length; i+=1) {
             // if there are child nodes if the same is there  dont add any, if different remove and rewrite
             else if (position.hasChildNodes() === true){
                       if(position.children[0].className === 'player2Piece'){
-
                       }
                       else if(position.children[0].className === 'player1Piece'){
                         let p2Piece = document.createElement('div');
@@ -427,16 +424,12 @@ for (var i = 0; i < gameState.board.length; i+=1) {
       // neither pieces present
     else if (row[j] != 'p2'|| row[j] != 'p1') {
       let position = arr[i][j];
-
       if(position.hasChildNodes() === false){
-
       }
       if (position.hasChildNodes() === true){
         position.removeChild(position.childNodes[0]);
-      }
-
-    }
-
+        }
+                    }
         }
     }
 }// end of updateBoard
