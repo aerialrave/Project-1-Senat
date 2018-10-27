@@ -372,9 +372,8 @@ else if (targSecond === gameState.board[0].length-1){
 }
 
 
-
+// feature complete
 function updateBoard(){
-debugger;
   let arr = [firstRow, secondRow, thirdRow];
 
 for (var i = 0; i < gameState.board.length; i+=1) {
@@ -401,17 +400,12 @@ for (var i = 0; i < gameState.board.length; i+=1) {
                         p1Piece.className = 'player1Piece';
                           position[0].replaceChild(p1piece, position.childNodes[0]);
                       }
-            }
-
+                    }
 
           }
 
     else if (row[j] === 'p2') {
-      let p2Piece = document.createElement('div');
-      p2Piece.className = 'player2Piece';
       let position = arr[i][j];
-
-
       if (position.hasChildNodes() === false){
         let p2Piece = document.createElement('div');
         p2Piece.className = 'player2Piece';
@@ -429,16 +423,12 @@ for (var i = 0; i < gameState.board.length; i+=1) {
                           position[0].replaceChild(p2piece, position.childNodes[0]);
                       }
             }
-
-
-
     }
       // neither pieces present
     else if (row[j] != 'p2'|| row[j] != 'p1') {
       let position = arr[i][j];
 
       if(position.hasChildNodes() === false){
-
 
       }
       if (position.hasChildNodes() === true){
