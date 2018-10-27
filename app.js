@@ -472,7 +472,7 @@ function watertrap(){
   // check the board to see if the trap is activated
     if (gameState.board[2][6]=== 'p1'||'p2'){
       // if there are no player pieces on the slot, swapPiece back up
-      if (gameState.board[1][3] != 'p1'||'p2'){
+      if (gameState.board[1][3] != 'p1'||'p2' || undefined){
       swapPiece(2,6,1,3);
     }
       // if the spot is occupied then  go to the next open spot
@@ -497,7 +497,7 @@ function watertrap(){
           else {
 
            for(let a = 10; a<0; a++){
-             if (gameState.board[0][a]!= 'p1'|| 'p2'){
+             if (gameState.board[0][a]!= 'p1'|| 'p2' || undefined){
                swapPiece(2,6,0,a);
                return 0;
              }
