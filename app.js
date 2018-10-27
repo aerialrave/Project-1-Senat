@@ -401,10 +401,7 @@ for (var i = 0; i < gameState.board.length; i+=1) {
 
     }
       // neither pieces present
-    else if (row[j] !=== 'p2'|| row[j] !=== 'p1') {
-
-      let p2Piece = document.createElement('div');
-      p2Piece.className = 'player2Piece';
+    else if (row[j] != 'p2'|| row[j] != 'p1') {
       let position = arr[i][j];
       position.firstChild.remove();
     }
