@@ -468,7 +468,7 @@ function writeTarget(trow, tcol){
   gameState.targCol = tcol;
 }
 
-function watertrap(){
+function waterTrap(){
   // check the board to see if the trap is activated
     if (gameState.board[2][6]=== 'p1'||'p2'){
       // if there are no player pieces on the slot, swapPiece back up
@@ -508,6 +508,31 @@ function watertrap(){
 
 
     }
+
+  }
+
+}
+
+// exit check
+function exitCheck(){
+  if(gameState.sourceRow === 2){
+      if (gameState.sourceCol === 7 && gameState.moves === 1) {
+        removePiece(gameState.board[2][7]);
+        updateBoard();
+        playerSwap();
+      }
+
+  else if (gameState.sourceCol=8 && gameState.moves === 2) {
+        removePiece(gameState.board[2][8]);
+        updateBoard();
+        playerSwap();
+      }
+
+      if (gameState.sourceCol=9 && gameState.moves === 3) {
+        removePiece(gameState.board[2][9]);
+        updateBoard();
+        playerSwap();
+      }
 
   }
 
