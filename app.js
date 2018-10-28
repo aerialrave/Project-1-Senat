@@ -247,17 +247,28 @@ const specialLand = () =>{
 
 // goal of traverseBoard is to be fed in 2 numbers that hold the 2 indexes and a set number of moves, after reaching the location, swap the values from origin to target location.
 function traverseBoard(firstIndex, secondIndex, steps){
+
+if (firstIndex === 2 && secondIndex ==9){
+  // do nothing maybe? reload the targeting selector?
+  gameState.boardBool = true;
+  gameState.moves = steps; 
+}
+
 let stepsCopy = steps;
 let plusOne = firstIndex+1;
 let path = secondIndex + steps;
 // now to use undefined to jump arrays
 for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
 
+
         if (gameState.board[firstIndex][r]!= undefined){// if the value inside is not undefined
         console.log(gameState.board[firstIndex][r]);// spit out what is inside
               stepsCopy -=1;//decriment the copy of move is by 1
               // if moves copy is equal to one here  swap from origin to  new location
                 if (r===steps && gameState.board[firstIndex][r++]!= undefined){// if next spot is NOT undefined and steps is fully looped, log out the current indexes first and second
+
+
+
 
                     swapPiece(firstIndex,secondIndex,firstIndex,r);
 
