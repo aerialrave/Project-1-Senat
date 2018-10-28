@@ -277,11 +277,18 @@ for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
                 if (r===steps && gameState.board[firstIndex][r++]!= undefined){// if next spot is NOT undefined and steps is fully looped, log out the current indexes first and second
 
                     // conditions  Go HERE!!
-
+                    if(defCheck(plusOne,e)===false && noAttack(gameState.sourceRow,gameState.sourceCol,plusOne,e)===false && blockadeCheck()===false)){
 
                     swapPiece(firstIndex,secondIndex,firstIndex,r);
 
-                  console.log("firstIndex :"+firstIndex +" r:"+ r);
+                    console.log("firstIndex :"+firstIndex +" r:"+ r);
+                  }
+                else {
+                  gameState.boardBool = true;
+                  gameState.moves = steps;
+                }
+
+
                 }
 
             }
@@ -293,12 +300,19 @@ else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined 
                 console.log("next array is "+ gameState.board[plusOne][e]);//spit out the values contained in the next array
                 console.log("the copy of moves is " + stepsCopy);//spit out the value of the copy
                 if( e === stepsCopy-1){ // when the loop ends
-
+                      if(defCheck(plusOne,e)===false && noAttack(gameState.sourceRow,gameState.sourceCol,plusOne,e)===false && blockadeCheck()===false)){
                     swapPiece(firstIndex,secondIndex,plusOne,e);
                     console.log("current value is "+ plusOne + " " +e);
                     console.log("escape!");//console log just before the return statement to not loop again.
                     // swap from origin to array [index+1][e]
                   return 0;
+                }
+                else{
+                  gameState.boardBool = true;
+                  gameState.moves = steps;
+                }
+
+
                 }
             }
           }
