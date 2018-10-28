@@ -47,7 +47,7 @@ const gameState = {
         this.player = 'p2';
         this.sourceCol = 9;
         this.sourceRow = 0;
-        this.rollCounter = 0;
+        this.rollCounter = 1;
         this.moves = 0;
         this.rollBool= true,
         this.boardBool= false;
@@ -241,7 +241,7 @@ function stickEval(){
 
 
 
-/
+
 
 
 
@@ -271,7 +271,7 @@ for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
                       return 0;
                     }
                     else{
-                    if(defCheck(firstIndex,r)===false && noAttack(gameState.sourceRow,gameState.sourceCol,firstIndex,r)===false && blockadeCheck()===false)){
+                    if(defCheck(firstIndex,r) === false && noAttack(gameState.sourceRow,gameState.sourceCol,firstIndex,r) === false && blockadeCheck()===false){
 
                     swapPiece(firstIndex,secondIndex,firstIndex,r);
 
@@ -301,7 +301,7 @@ else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined 
                   }
                       else {
 
-                    if(defCheck(plusOne,e)===false && noAttack(gameState.sourceRow,gameState.sourceCol,plusOne,e)===false && blockadeCheck()===false)){
+                    if(defCheck(plusOne,e)===false && noAttack(gameState.sourceRow,gameState.sourceCol,plusOne,e)===false && blockadeCheck()===false){
                     swapPiece(firstIndex,secondIndex,plusOne,e);
                     console.log("current value is "+ plusOne + " " + e);
                     console.log("escape!");//console log just before the return statement to not loop again.
@@ -347,7 +347,7 @@ let p1Win = false;
 let p2Win = false;
     if (garray[0].includes('p1') === false  && garray[1].includes('p1') === false && garray[2].includes('p1') === false ){
   p1Win = true;
-  bantxt.innerHTML = "Player 1 Wins!"
+  bantxt.innerHTML = "Player 1 Wins! Reset game to play again"
   gameState.boardBool = false;
   gameState.rollBool = false;
   console.log (p1Win);
@@ -356,7 +356,7 @@ let p2Win = false;
       }
 else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== false && garray[2].includes('p2') === false){
   p2Win = true;
-  bantxt.innerHTML = "Player 2 Wins!"
+  bantxt.innerHTML = "Player 2 Wins! Reset game to play again"
   gameState.boardBool = false;
   gameState.rollBool = false;
   console.log (p2Win);
@@ -481,7 +481,7 @@ function noAttack(firstIndex,secondIndex,targFirst,targSecond){
 
       }
       else if(gameState.board[firstIndex][secondIndex] === 'p1' && gameState.board[targFirst][targSecond] === 'p2'|| gameState.board[firstIndex][secondIndex] === 'p2' && gameState.board[targFirst][targSecond]==='p1'){
-          
+
           return false;
         }
           else {
@@ -560,13 +560,16 @@ function waterTrap(){
 function exitCheck(){
   if(gameState.sourceRow === 2){
       if (gameState.sourceCol === 7 && gameState.moves === 1) {
+        bantxt.innerHTML= (`${gameState.player}'s piece has moves on and is removed from play' `);
         removePiece(gameState.board[2][7]);
         updateBoard();
+
         playerSwap();
         return true;
       }
 
   else if (gameState.sourceCol=8 && gameState.moves === 2) {
+        bantxt.innerHTML= (`${gameState.player}'s piece has moves on and is removed from play' `);
         removePiece(gameState.board[2][8]);
         updateBoard();
         playerSwap();
@@ -574,6 +577,7 @@ function exitCheck(){
       }
 
     else if (gameState.sourceCol=9 && gameState.moves === 3) {
+        bantxt.innerHTML= (`${gameState.player}'s piece has moves on and is removed from play' `);
         removePiece(gameState.board[2][9]);
         updateBoard();
         playerSwap();
