@@ -330,14 +330,20 @@ function winCheck(garray){
   console.log('win check');
 let p1Win = false;
 let p2Win = false;
-debugger;
     if (garray[0].includes('p1') === false  && garray[1].includes('p1') === false && garray[2].includes('p1') === false ){
   p1Win = true;
+  bantxt.innerHTML = "Player 1 Wins!"
+  gameState.boardBool = false;
+  gameState.rollBool = false;
   console.log (p1Win);
+
   console.log("P1 Wins");
       }
 else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== false && garray[2].includes('p2') === false){
   p2Win = true;
+  bantxt.innerHTML = "Player 2 Wins!"
+  gameState.boardBool = false;
+  gameState.rollBool = false;
   console.log (p2Win);
   console.log("P2 Wins");
   }
@@ -346,7 +352,7 @@ else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== fal
 
 // replaces piece on board with a string for 0
 function removePiece(firstIndex,secondIndex){
-  gameState.Board[firstIndex][secondIndex] ='0';
+  gameState.board[firstIndex][secondIndex] ='0';
 }
 
 // goal of defCheck is to look "around" a targeted array index for neighbors, if neighbors are found return true, else return false
