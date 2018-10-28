@@ -251,7 +251,7 @@ function traverseBoard(firstIndex, secondIndex, steps){
 if (firstIndex === 2 && secondIndex ==9){
   // do nothing maybe? reload the targeting selector?
   gameState.boardBool = true;
-  gameState.moves = steps; 
+  gameState.moves = steps;
 }
 
 let stepsCopy = steps;
@@ -507,7 +507,7 @@ function waterTrap(){
             //
           else {
 
-           for(let a = 10; a<0; a++){
+           for(let a = 10; a<=0; a++){
              if (gameState.board[0][a]!= 'p1'|| 'p2' || undefined){
                swapPiece(2,6,0,a);
                return 0;
