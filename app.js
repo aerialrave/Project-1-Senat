@@ -537,3 +537,37 @@ function exitCheck(){
   }
 
 }
+
+function blockadeCheck(){
+
+  if(gameState.moves>=3){
+
+    let blockade = 0
+    let blockrun = gameState.sourceCol;
+
+    for(let i=0; i<=3; i+=1){
+    gameState.board[gameState.sourceRow][blockrun++];
+
+
+    if (gameState.player === 'p1' && gameState.board[gameState.sourceRow][blockrun] ==='p2'|| gameState.player === 'p2' && gameState.board[gameState.sourceRow][blockrun] ==='p1'){
+    blockade +=1;
+          if(blockade === 3){
+            return true;
+          }
+        }
+      }
+
+      blockrun = gameState.sourceCol;
+      for(let i=3; i<=0; i-=1){
+      gameState.board[gameState.sourceRow][blockrun--];
+
+
+      if (gameState.player === 'p1' && gameState.board[gameState.sourceRow][blockrun] ==='p2'|| gameState.player === 'p2' && gameState.board[gameState.sourceRow][blockrun] ==='p1'){
+      blockade +=1;
+            if(blockade === 3){
+              return true;
+            }
+          }
+        }
+    }
+  }
