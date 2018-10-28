@@ -477,12 +477,17 @@ for (var i = 0; i < gameState.board.length; i+=1) {
 // to determine if a swap of opposing pieces can take place
 function noAttack(firstIndex,secondIndex,targFirst,targSecond){
       if (targFirst === 1 && targSecond === 4|| targFirst === 2 && targSecond === 6 || targFirst === 2 && targSecond === 8|| targFirst === 2 && targSecond === 9){
-        if(gameState.board[firstIndex][secondIndex] === 'p1' && gameState.board[targFirst][targSecond] === 'p2'|| gameState.board[firstIndex][secondIndex] === 'p2' && gameState.board[targFirst][targSecond]==='p1')
-          return true;
+        return true;
+
       }
-  else {
-    return false;
-  }
+      else if(gameState.board[firstIndex][secondIndex] === 'p1' && gameState.board[targFirst][targSecond] === 'p2'|| gameState.board[firstIndex][secondIndex] === 'p2' && gameState.board[targFirst][targSecond]==='p1'){
+          
+          return false;
+        }
+          else {
+            return true
+          }
+
 }
 
 //reset moves and rolls
