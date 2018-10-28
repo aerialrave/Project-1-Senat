@@ -239,19 +239,9 @@ function stickEval(){
 
 
 
-//  can a piece swap places with another piece
-
-// can a piece pass a given row of 3 or more pieces,
 
 
-// what to do on a land with a special property
-const specialLand = () =>{
-    // given a target location enact special rules
-
-    //given
-
-
-}
+/
 
 
 
@@ -277,8 +267,10 @@ for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
                 if (r===steps && gameState.board[firstIndex][r++]!= undefined){// if next spot is NOT undefined and steps is fully looped, log out the current indexes first and second
 
                     // conditions  Go HERE!!
-
-
+                    if(exitCheck===true){
+                      return 0;
+                    }
+                    else{
                     if(defCheck(firstIndex,r)===false && noAttack(gameState.sourceRow,gameState.sourceCol,firstIndex,r)===false && blockadeCheck()===false)){
 
                     swapPiece(firstIndex,secondIndex,firstIndex,r);
@@ -289,8 +281,8 @@ for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
                   bantxt.innerHTML = (`${gameState.player} gave an improper move, choose another piece`);
                   gameState.boardBool = true;
                   gameState.moves = steps;
-                }
-
+                      }
+              }
 
                 }
 
@@ -304,7 +296,10 @@ else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined 
                 console.log("the copy of moves is " + stepsCopy);//spit out the value of the copy
                 if( e === stepsCopy-1){ // when the loop ends
 
-
+                  if(exitCheck===true){
+                    return 0;
+                  }
+                      else {
 
                     if(defCheck(plusOne,e)===false && noAttack(gameState.sourceRow,gameState.sourceCol,plusOne,e)===false && blockadeCheck()===false)){
                     swapPiece(firstIndex,secondIndex,plusOne,e);
@@ -318,7 +313,7 @@ else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined 
                   gameState.boardBool = true;
                   gameState.moves = steps;
                 }
-
+              }
 
                 }
             }
