@@ -197,33 +197,33 @@ function stickEval(){
                 //move 1 space and re throw
                 gameState.rollCounter = 1
                 gameState.moves = 1;
-                console.log("1 White!")
+                bantxt.innerHTML = (`${gameState.player} 1 White! Can move one space and roll again after moving`)
                 return 1;
               }
               else if (whiteCounter === 2 ) {
                 //move 2 spaces
                 gameState.moves = 2;
-                console.log("2 White!")
+                bantxt.innerHTML =(`${gameState.player} 2 White! Can move 2 spaces`)
                   return 2;
               }
 
               else if (whiteCounter === 3 ) {
                 // move 3 spaces
                 gameState.moves = 3;
-                console.log("3 White!")
+                bantxt.innerHTML =(`${gameState.player} 3 White! Can move 3 spaces`)
                 return 3;
               }
               else if(whiteCounter === 4 ){
                 //move 4 & re roll
                 gameState.moves = 4;
-                console.log("All White!")
+                bantxt.innerHTML =(`${gameState.player} All White! Can move 4 spaces and roll again after moving`)
                 gameState.rollCounter = 1;
                 return 4;
               }
               else if(whiteCounter === 0){
                 //move 6 and re roll
                 gameState.moves = 6;
-                console.log("All Black!")
+                bantxt.innerHTML = (`${gameState.player} All Black! Can move 6 spaces and roll again after moving`)
                 gameState.rollCounter = 1;
                 return 6;
               }
@@ -270,14 +270,13 @@ let path = secondIndex + steps;
 // now to use undefined to jump arrays
 for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
 
-
         if (gameState.board[firstIndex][r]!= undefined){// if the value inside is not undefined
         console.log(gameState.board[firstIndex][r]);// spit out what is inside
               stepsCopy -=1;//decriment the copy of move is by 1
               // if moves copy is equal to one here  swap from origin to  new location
                 if (r===steps && gameState.board[firstIndex][r++]!= undefined){// if next spot is NOT undefined and steps is fully looped, log out the current indexes first and second
 
-
+                    // conditions  Go HERE!!
 
 
                     swapPiece(firstIndex,secondIndex,firstIndex,r);
@@ -288,7 +287,7 @@ for (let r = secondIndex;r<= path; r+=1){// loops from 0 to moves one by 1
             }
 
 else if (gameState.board[firstIndex][r]=== undefined) {//if we hit an undefined value
-            debugger;
+
             console.log("undefined hit!");//hit confirm
             for(let e = 0;e <=stepsCopy-1; e++){// loop from the start of the next array in line
                 console.log("next array is "+ gameState.board[plusOne][e]);//spit out the values contained in the next array
@@ -320,7 +319,7 @@ function swapPiece(firstIndex,secondIndex,targFirst,targSecond){
           // value from temo to first
         gameState.board[firstIndex][secondIndex]= tempo;
 
-}
+        }
 
 
 
