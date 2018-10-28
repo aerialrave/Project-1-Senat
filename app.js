@@ -1,3 +1,4 @@
+const bannerControl = document.getElementById("banner");
 let viewBoard =  document.querySelector("#board");
 
 let firstRow = document.querySelectorAll(".firstrow");
@@ -5,9 +6,9 @@ let secondRow = document.querySelectorAll(".secondrow");
 let thirdRow = document.querySelectorAll(".thirdrow");
 
 const diceControl = document.getElementById("highRoller");
-const forceTurnend = document.getElementById("forceEnd")
-
-
+const forceTurnend = document.getElementById("forceEnd");
+const resetGame = document.getElementById("resetGame");
+const bantxt = document.getElementById("bantxt");
 const gameState = {
     board:[
     ['0','1','2','3','4','5','6','7','8','9'],
@@ -71,8 +72,6 @@ if(gameState.rollBool === true ){
         gameState.rollBool = false;
         }
 });
-
-
 // ends the turn and adds turns roll boolean to true, allopwing the event listener to run
 forceTurnend.addEventListener("click", function() {
           playerSwap();
@@ -82,7 +81,11 @@ forceTurnend.addEventListener("click", function() {
 //functions for gamme piece interactions
 
 //Testing if a game state is altered, listen  for a value
+resetGame.addEventListener("click", function(){
+  gameState.startBoard();
+  updateBoard();
 
+})
 //
 viewBoard.addEventListener("click", function(e){
 // ok so I get how it works not to make a logic rule for turns then updateBoard
@@ -116,6 +119,10 @@ let testCol = e.target.dataset.col;
 
   });
 
+//altering the banner depending on turn
+
+
+
 //functions for special board interactions
 
 // function for player swapping will use to alter screen
@@ -127,6 +134,8 @@ const playerSwap =() =>{
           resetTargeting();
           moveAndRollreset();
           gameState.rollBool = true;
+          bannerControl.style.backgroundColor ="violet";
+          bantxt.innerHTML = "Player 2 turn"
         }
         else{
           gameState.player ='p1';
@@ -135,6 +144,8 @@ const playerSwap =() =>{
           resetTargeting();
           moveAndRollreset();
           gameState.rollBool = true;
+          bannerControl.style.backgroundColor ="yellow";
+          bantxt.innerHTML = "Player 1 turn"
         }
 
 }
@@ -150,7 +161,6 @@ const stickRoll = () => {
   }
 
 }
-
 
 function updateStickroll(){
   let button= document.querySelector("#highRoller");
@@ -491,8 +501,6 @@ function waterTrap(){
 
 
           for(let k = 12; k === 0; k--){
-
-
              if (k>9){
               let revwater = 2;
               if (gameState.board[1][revwater] === 'p1'||'p2'){
@@ -516,8 +524,6 @@ function waterTrap(){
             }
            }
           }
-
-
     }
 
   }

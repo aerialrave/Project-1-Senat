@@ -14,6 +14,20 @@ body{
     margin-bottom: 40px;
 }
 
+#banner{
+  margin: -5px auto;
+  margin-left: -6px;
+  margin-bottom: 5px;
+  height: 10vh;
+  width: 98vw;
+  background-color: violet;
+}
+
+#banner>h1{
+  text-align: center;
+  line-height: 0.3;
+
+}
 
 #first{
   display: flex;
@@ -38,6 +52,46 @@ body{
   flex: 31%;
 }
 
+#second4{
+  background-image: url("./images/ankh.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#third5{
+  background-image: url("./images/house-of-beauty.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#third6{
+  background-image: url("./images/waters.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#third7{
+  background-image: url("./images/threedot.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#third8{
+  background-image: url("./images/senet_two.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#third9{
+  background-image: url("./images/Eye_of_Horus.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .firstrow{
 flex: 10%;
@@ -69,12 +123,13 @@ margin-top: 20px;
 }
 
 #stickContainer{
-  margin-left: 234px;
+  margin-left: 28px;
     display: flex;
-    transform: rotate(45deg);
+    /* transform: rotate(90deg); */
     background-color: orange;
     height: 50vh;
     width: 30vh;
+    margin-top: -55px;
 }
 
 .stick{
@@ -111,4 +166,13 @@ margin-top: 20px;
   width: 65%;
   background-color: violet;
   border-radius: 50%;
+}
+
+#Gflow{
+  background-image:url("./images/senetarrow.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20vh;
+  width: 40vw;
 }
