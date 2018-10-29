@@ -177,7 +177,6 @@ let sticks = gameState.sticks;
     if (stick === 0) {
       stickEL.style.backgroundColor= "black";
     }
-
       else {
       stickEL.style.backgroundColor= "white";
           }
@@ -255,11 +254,13 @@ if (firstIndex === 2 && secondIndex === 9){
       return 0;
     }
     else {
+  bantxt.innerHTML = (`${gameState.player} cant move past the end of the board, but can remove the piece with 1 white, choose another piece`);
   gameState.boardBool = true;
   gameState.moves = steps;
   //acts as a "refund"
     }
 }
+
 
 let stepsCopy = steps;
 let plusOne = firstIndex+1;
@@ -358,7 +359,7 @@ let p2Win = false;
   gameState.boardBool = false;
   gameState.rollBool = false;
   console.log (p1Win);
-
+  gameState.won = true;
   console.log("P1 Wins");
       }
 else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== false && garray[2].includes('p2') === false){
@@ -367,6 +368,7 @@ else if (garray[0].includes ('p2') === false  && garray[1].includes('p2')=== fal
   gameState.boardBool = false;
   gameState.rollBool = false;
   console.log (p2Win);
+  gameState.won = true;
   console.log("P2 Wins");
   }
 
@@ -578,7 +580,7 @@ function exitCheck(){
         removePiece(gameState.board[2][7]);
         updateBoard();
         //set timmeout for  playerSwap
-        setTimeout( function(){playerSwap()},500);
+        setTimeout( function(){playerSwap()},200);
 
         return true;
       }
@@ -587,7 +589,7 @@ function exitCheck(){
         bantxt.innerHTML= (`${gameState.player}'s piece has moved on and is removed from play' `);
         removePiece(gameState.board[2][8]);
         updateBoard();
-        setTimeout( function(){playerSwap()},500);
+        setTimeout( function(){playerSwap()},200);
         return true;
       }
 
@@ -595,7 +597,7 @@ function exitCheck(){
         bantxt.innerHTML= (`${gameState.player}'s piece has moved on and is removed from play' `);
         removePiece(gameState.board[2][9]);
         updateBoard();
-        setTimeout( function(){playerSwap()},500);
+        setTimeout( function(){playerSwap()},200);
         return true;
       }
       else{
