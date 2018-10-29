@@ -31,3 +31,34 @@ Only one piece can stay on each square at a time. If you land on another players
 If 2+ pieces are next to one another, they are protected and you cannot complete your turn.
 
 The goal of the game is to move all of the pieces for the player off of the board
+
+#Technonogies used
+Css Html5 Vanilla Javascript
+
+#Approach taken
+
+Senat is a ancient and unfamiliar game to me, so I secided first to break up the rules of the game into three phases
+
+The start
+
+The switch over
+
+The end of turn
+
+the beginning of the game starts from the piece on the top rignt and it's moves are dictated by rolling sticks
+
+after that point player choice enters the picture after rolls for movement is made.
+
+then I have effects occur at the end of a turn, while a turn can be repeated in the game with correct rolls, the consequences happen after the coices are made.
+
+the data representation was chosen as a string array because only positioning within the play grid and piece interaction is simple with no memory occuring on the pieces them selves
+
+the goal of the game is to release all of your pieces for the board, so I chose to make my win condition the removal of all strings of either player
+
+# Resources
+
+The wikiHow article on te game helped my understanding greatly
+
+The Brandeis university paper Made the rules and gameflow much more concrete
+
+http://www.cs.brandeis.edu/~storer/JimPuzzles/GAMES/Senet/Senet.pdf

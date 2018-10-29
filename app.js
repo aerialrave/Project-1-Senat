@@ -100,7 +100,7 @@ resetGame.addEventListener("click", function() {
     bantxt.innerHTML = (`purple piece on the right most side moves first`);
     bannerControl.style.backgroundColor = "violet";
     // add function call for game here
-    playGame();
+    //playGame();
   })
   //
 viewBoard.addEventListener("click", function(e) {
@@ -687,15 +687,15 @@ function blockadeCheck() {
     }
   }
 }
-
+/*
 function playGame() {
-  if (gameState.won != true) {
+  while (gameState.won != true) {
     debugger;
 
     let turnFirst = false;
-    if (turnFirst != true) {
+    while (turnFirst != true) {
 
-      if (gameState.rollCounter >= 0) {
+      while (gameState.rollCounter >= 0) {
         while (gameState.rollActive === true) {
           //open roll listener
           gameState.rollBool = true;
@@ -709,7 +709,7 @@ function playGame() {
           }
         }
 
-        if (gameState.boardActive === false) {
+        while (gameState.boardActive === false) {
           // open board listener
           gameState.boardBool = true;
           // wait for input to board
@@ -719,11 +719,11 @@ function playGame() {
         //feed sourceRow and sourceCol to
 
         traverseBoard(gameState.sourceRow, gameState.sourceCol, gameState.moves);
-        if (traverseBoard(gameState.sourceRow, gameState.sourceCol,
+        while (traverseBoard(gameState.sourceRow, gameState.sourceCol,
             gameState.moves) != 0) {
           gameState.boardBool = true;
           // feed another set of inputs
-          if (gameState.boardActive === false) {
+          while (gameState.boardActive === false) {
             // open board listener
             gameState.boardBool = true;
             // wait for input to board
@@ -756,9 +756,9 @@ function playGame() {
 
     let currplayer = gameState.player;
 
-    if (gameState.rollCounter <= 0 || gameState.player != currplayer) {
+    while (gameState.rollCounter <= 0 || gameState.player != currplayer) {
 
-      if (gameState.rollActive === true) {
+      while (gameState.rollActive === true) {
         //open roll listener
         gameState.rollBool = true;
         //evaluate roll -in event listener
@@ -771,7 +771,7 @@ function playGame() {
         }
       }
 
-      if (gameState.boardActive === false) {
+      while (gameState.boardActive === false) {
         // open board listener
         gameState.boardBool = true;
         // wait for input to board
@@ -781,11 +781,11 @@ function playGame() {
       //feed sourceRow and sourceCol to
 
       traverseBoard(gameState.sourceRow, gameState.sourceCol, gameState.moves);
-      if (traverseBoard(gameState.sourceRow, gameState.sourceCol, gameState.moves) !=
+      while (traverseBoard(gameState.sourceRow, gameState.sourceCol, gameState.moves) !=
         0) {
         gameState.boardBool = true;
         // feed another set of inputs
-        if (gameState.boardActive === false) {
+        switch (gameState.boardActive === false) {
           // open board listener
           gameState.boardBool = true;
           // wait for input to board
@@ -830,3 +830,4 @@ function playGame() {
 }
 
 playGame();
+*/
