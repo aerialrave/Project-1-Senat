@@ -84,7 +84,8 @@ forceTurnend.addEventListener("click", function() {
 resetGame.addEventListener("click", function(){
   gameState.startBoard();
   updateBoard();
-
+bantxt.innerHTML = (`purple piece on the right most side moves first`);
+bannerControl.style.backgroundColor= "violet";
 })
 //
 viewBoard.addEventListener("click", function(e){
@@ -98,6 +99,7 @@ let testCol = e.target.dataset.col;
     if( gameState.player ==='p1' && gameState.board[testRow][testCol] === 'p2'|| gameState.player ==='p2' && gameState.board[testRow][testCol] === 'p1'){
       gameState.boardBool = true;
         // use ME!! for messages about misplacesd clicks on pieces
+          bantxt.innerHTML = (`${gameState.player} choose one of your own pieces to move, movement will occur atomatically`);
       return 0;
           }
 
@@ -107,10 +109,12 @@ let testCol = e.target.dataset.col;
       gameState.boardBool = false;
       // maybe highlight the border?
       console.log("gameState sourceRow " + gameState.sourceRow + " gameState sourceCol " + gameState.sourceCol);
+        bantxt.innerHTML = (`${gameState.player} selected their own piece at ${gameState.sourceRow}, ${gameState.sourceCol} sucessfully `);
       }
 
       else {
         gameState.boardBool = true;
+        bantxt.innerHTML = (`${gameState.player} choose a spot with one of your own pieces to move, movement will occur atomatically`);
         return 0;
       }
 
@@ -195,7 +199,7 @@ function stickEval(){
 
               if(whiteCounter=== 1){
                 //move 1 space and re throw
-                gameState.rollCounter = 1
+                gameState.rollCounter += 1
                 gameState.moves = 1;
                 bantxt.innerHTML = (`${gameState.player} 1 White! Can move one space and roll again after moving`)
                 return 1;
@@ -217,19 +221,16 @@ function stickEval(){
                 //move 4 & re roll
                 gameState.moves = 4;
                 bantxt.innerHTML =(`${gameState.player} All White! Can move 4 spaces and roll again after moving`)
-                gameState.rollCounter = 1;
+                gameState.rollCounter += 1;
                 return 4;
               }
               else if(whiteCounter === 0){
                 //move 6 and re roll
                 gameState.moves = 6;
                 bantxt.innerHTML = (`${gameState.player} All Black! Can move 6 spaces and roll again after moving`)
-                gameState.rollCounter = 1;
+                gameState.rollCounter + = 1;
                 return 6;
               }
-
-
-
 }
 /*
 
@@ -248,10 +249,16 @@ function stickEval(){
 // goal of traverseBoard is to be fed in 2 numbers that hold the 2 indexes and a set number of moves, after reaching the location, swap the values from origin to target location.
 function traverseBoard(firstIndex, secondIndex, steps){
 
-if (firstIndex === 2 && secondIndex ==9){
+if (firstIndex === 2 && secondIndex === 9){
   // do nothing maybe? reload the targeting selector?
+    if(exitCheck() === true){
+      return 0;
+    }
+    else {
   gameState.boardBool = true;
   gameState.moves = steps;
+  //acts as a "refund"
+    }
 }
 
 let stepsCopy = steps;
@@ -492,7 +499,7 @@ function noAttack(firstIndex,secondIndex,targFirst,targSecond){
 
 //reset moves and rolls
 function moveAndRollreset(){
-  gameState.board.rollCounter = 0;
+  gameState.board.rollCounter = 1;
   gameState.board.moves = 0;
 }
 //reset resetTargeting
@@ -520,7 +527,9 @@ function waterTrap(){
     if (gameState.board[2][6]=== 'p1'||'p2'){
       // if there are no player pieces on the slot, swapPiece back up
       if (gameState.board[1][3] != 'p1'||'p2' || undefined){
-      swapPiece(2,6,1,3);
+        setTimeout( function(){swapPiece(2,6,1,3) },200);
+        updateBoard();
+
     }
       // if the spot is occupied then  go to the next open spot
     else if (gameState.board[1][3] === 'p1'||'p2') {
@@ -533,7 +542,10 @@ function waterTrap(){
                 revwater -=1;
               }
               else {
-                swapPiece(2,6,1,revwater);
+
+                setTimeout( function(){swapPiece(2,6,1,revwater)}, 200);
+                updateBoard();
+
                 return 0;
               }
 
@@ -543,7 +555,9 @@ function waterTrap(){
 
            for(let a = 10; a<=0; a++){
              if (gameState.board[0][a]!= 'p1'|| 'p2' || undefined){
-               swapPiece(2,6,0,a);
+
+               setTimeout( function(){swapPiece(2,6,0,a)}, 200);
+               updateBoard();
                return 0;
              }
 
@@ -560,27 +574,28 @@ function waterTrap(){
 function exitCheck(){
   if(gameState.sourceRow === 2){
       if (gameState.sourceCol === 7 && gameState.moves === 1) {
-        bantxt.innerHTML= (`${gameState.player}'s piece has moves on and is removed from play' `);
+        bantxt.innerHTML= (`${gameState.player}'s piece has moved on and is removed from play' `);
         removePiece(gameState.board[2][7]);
         updateBoard();
+        //set timmeout for  playerSwap
+        setTimeout( function(){playerSwap()},500);
 
-        playerSwap();
         return true;
       }
 
   else if (gameState.sourceCol=8 && gameState.moves === 2) {
-        bantxt.innerHTML= (`${gameState.player}'s piece has moves on and is removed from play' `);
+        bantxt.innerHTML= (`${gameState.player}'s piece has moved on and is removed from play' `);
         removePiece(gameState.board[2][8]);
         updateBoard();
-        playerSwap();
+        setTimeout( function(){playerSwap()},500);
         return true;
       }
 
     else if (gameState.sourceCol=9 && gameState.moves === 3) {
-        bantxt.innerHTML= (`${gameState.player}'s piece has moves on and is removed from play' `);
+        bantxt.innerHTML= (`${gameState.player}'s piece has moved on and is removed from play' `);
         removePiece(gameState.board[2][9]);
         updateBoard();
-        playerSwap();
+        setTimeout( function(){playerSwap()},500);
         return true;
       }
       else{
@@ -606,6 +621,9 @@ function blockadeCheck(){
           if(blockade === 3){
             return true;
           }
+          else{
+            return false;
+          }
         }
       }
 
@@ -619,6 +637,10 @@ function blockadeCheck(){
             if(blockade === 3){
               return true;
             }
+            else{
+              return false;
+            }
+
           }
         }
     }

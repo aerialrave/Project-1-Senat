@@ -1,6 +1,7 @@
 body{
   display: flex;
   flex-flow: column;
+  background-color: blanchedalmond;
 }
 
 #board{
@@ -47,7 +48,7 @@ body{
 
 #third{
   display: flex;
-  background-color: blue;
+  background-color: antiquewhite;
   height: 31%;
   flex: 31%;
 }
@@ -118,7 +119,7 @@ display: flex;
 #containerWrapper{
 display: inline-flex;
 margin-top: 20px;
-
+justify-content: space-around;
 
 }
 
@@ -143,10 +144,20 @@ margin-top: 20px;
 
 
 #buttstock{
-
+  display: inline-flex;
+  flex-flow: column;
+}
+#highRoller{
+  flex:1;
 }
 
+#forceEnd{
+  flex:1;
+}
 
+#resetGame{
+  flex:1;
+}
 #rules{
 
 }
