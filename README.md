@@ -57,7 +57,8 @@ the goal of the game is to release all of your pieces for the board, so I chose 
 
 # Resources
 
-The wikiHow article on te game helped my understanding greatly
+The wikiHow article on the game helped my understanding greatly
+https://www.wikihow.com/Play-Senet
 
 The Brandeis university paper Made the rules and gameflow much more concrete
 
